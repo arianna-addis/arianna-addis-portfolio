@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arianna Addis — Research Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:     #faf6f0;
+    --warm-100:  #f5ede0;
+    --warm-200:  #e8d9c4;
+    --warm-300:  #d4b896;
+    --amber:     #b07d3a;
+    --amber-dark:#7a5420;
+    --text:      #2a1f14;
+    --text-mid:  #5c4a33;
+    --text-muted:#8a7560;
+    --border:    #ddd0bc;
+    --white:     #ffffff;
+    --teal:      #2a7a65;
+    --teal-light:#e1f2ec;
+    --purple:    #5a4ab0;
+    --purple-light:#eeedfb;
+    --coral:     #b04a2a;
+    --coral-light:#faeae5;
+    --blue:      #2a5fa0;
+    --blue-light: #e6f0fb;
+    --green:     #3a6e20;
+    --green-light:#eaf3de;
+    --pink:      #903366;
+    --pink-light: #fbeaf2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,246,240,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-name {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    color: var(--amber-dark);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-mid);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    background: var(--warm-100);
+    color: var(--amber-dark);
+  }
+
+  /* ── Pages ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── Hero ── */
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+  .hero-lead {
+    font-size: 17px;
+    color: var(--text-mid);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Lora', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--amber-dark);
+    display: block;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ── Section layout ── */
+  .section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Project cards ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 1rem;
+  }
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .project-card:hover {
+    border-color: var(--amber);
+    box-shadow: 0 4px 20px rgba(176,125,58,0.1);
+  }
+  .card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .tag-industry { background: #faeeda; color: #7a5420; }
+  .tag-federal  { background: #e1f2ec; color: #1f6050; }
+  .tag-applied  { background: #eeedfb; color: #4a3a9a; }
+  .tag-qual     { background: #faeae5; color: #8a3a1a; }
+  .tag-intl     { background: #e6f0fb; color: #1a4f90; }
+  .tag-mixed    { background: #fbeaf2; color: #7a2a58; }
+
+  .card-title {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .card-org {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    flex: 1;
+  }
+  .card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--warm-200);
+  }
+  .metric {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .metric svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    stroke: var(--amber);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ── Publications page ── */
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .pub-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 8px;
+    transition: border-color 0.15s;
+  }
+  .pub-item:hover { border-color: var(--amber); }
+  .pub-type {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .pub-title {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.45;
+    margin-bottom: 4px;
+  }
+  .pub-meta {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+  .pub-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--amber);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  .pub-link:hover { border-color: var(--amber); }
+  .pub-placeholder {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  /* ── About page ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 620px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1rem; }
+    .hero { padding: 3rem 1.25rem 2.5rem; }
+    .section { padding: 0 1.25rem 3rem; }
+  }
+  .about-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .about-card h3 {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--amber-dark);
+    margin-bottom: 0.75rem;
+  }
+  .about-card p {
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.5rem;
+  }
+  .skill-chip {
+    font-size: 12px;
+    color: var(--text-mid);
+    background: var(--warm-100);
+    border: 1px solid var(--warm-200);
+    border-radius: 20px;
+    padding: 4px 12px;
+  }
+  .about-bio {
+    background: var(--warm-100);
+    border-radius: 12px;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    border-left: 3px solid var(--amber);
+  }
+  .about-bio p {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+  .about-bio p:last-child { margin-bottom: 0; }
+
+  /* ── Contact page ── */
+  .contact-wrap {
+    max-width: 520px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 1rem 1.25rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.15s;
+    font-size: 14px;
+  }
+  .contact-item:hover { border-color: var(--amber); }
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--warm-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-icon svg {
+    width: 17px;
+    height: 17px;
+    stroke: var(--amber);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .contact-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    display: block;
+  }
+  .contact-val {
+    font-size: 14px;
+    color: var(--text);
+  }
+  .open-to {
+    background: var(--warm-100);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+  .open-to strong { color: var(--amber-dark); }
+
+  /* ── CV page ── */
+  .cv-section { margin-bottom: 2rem; }
+  .cv-section h3 {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--amber-dark);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .cv-item {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--warm-200);
+  }
+  .cv-item:last-child { border-bottom: none; }
+  .cv-item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 3px;
+  }
+  .cv-role {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .cv-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .cv-place {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .cv-bullets {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    padding-left: 1rem;
+  }
+  .cv-bullets li { margin-bottom: 2px; }
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--amber-dark);
+    background: var(--warm-100);
+    border: 1px solid var(--warm-300);
+    border-radius: 8px;
+    padding: 8px 18px;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .download-btn:hover { background: var(--warm-200); }
+  .download-btn svg {
+    width: 15px; height: 15px;
+    stroke: var(--amber); fill: none;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="#" onclick="showPage('portfolio')">Arianna Addis</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('portfolio')" id="nav-portfolio" class="active">Portfolio</a></li>
+    <li><a href="#" onclick="showPage('publications')" id="nav-publications">Publications</a></li>
+    <li><a href="#" onclick="showPage('cv')" id="nav-cv">CV</a></li>
+    <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════ PORTFOLIO ═══════════════════════════════ -->
+<div id="page-portfolio" class="page active">
+  <div class="hero">
+    <p class="hero-eyebrow">Research Portfolio</p>
+    <h1>People, teams,<br>and <em>technology.</em></h1>
+    <p class="hero-lead">I'm an organizational psychologist and applied researcher with 6+ years of experience studying how humans work — together, alongside machines, and through hardship.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">6+</span><span class="stat-label">years of research</span></div>
+      <div><span class="stat-num">8</span><span class="stat-label">conference presentations</span></div>
+      <div><span class="stat-num">131K</span><span class="stat-label">workouts analyzed</span></div>
+      <div><span class="stat-num">2</span><span class="stat-label">peer-reviewed articles</span></div>
+      <div><span class="stat-num">2</span><span class="stat-label">book chapters</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Featured research projects</p>
+    <div class="projects-grid">
+
+      <!-- 1 -->
+      <a class="project-card" href="#" onclick="showPage('publications')">
+        <div class="card-head">
+          <div class="card-icon" style="background:#faeeda; color:#7a5420; font-size:20px;">⌚</div>
+          <span class="tag tag-industry">Industry</span>
+        </div>
+        <div>
+          <div class="card-title">Measuring marathoner grit from wearable data</div>
+          <div class="card-org">Brooks Running · 2024</div>
+        </div>
+        <p class="card-desc">Designed and led an original research project using 131,000 runner workouts and 1,200 survey responses to unobtrusively measure psychological states via watch metrics — informing wear-tester recruitment and informing product development strategy. Presented at the company-wide Research Symposium and to the Footwear Department.</p>
+        <div class="card-footer">
+          <span class="metric"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="10"/><path d="M12 6v6l4 2"/></svg>Python · SQL · DashLX</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>1,200 survey responses</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Research Symposium presentation</span>
+        </div>
+      </a>
+
+      <!-- 2 -->
+      <a class="project-card" href="#" onclick="showPage('publications')">
+        <div class="card-head">
+          <div class="card-icon" style="background:#e1f2ec; color:#1f6050; font-size:20px;">🤖</div>
+          <span class="tag tag-federal">Federal research</span>
+        </div>
+        <div>
+          <div class="card-title">Trust in human-AI teams</div>
+          <div class="card-org">Air Force Office of Scientific Research · 2021–2024</div>
+        </div>
+        <p class="card-desc">Co-led a $650K, 3-year longitudinal study on how trust forms and breaks down in human-autonomous agent teams. Developed and validated 10 behavioral trust measures using multimodal physiological and behavioral data. Managed 400+ participants across a 4-month data collection window.</p>
+        <div class="card-footer">
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>400+ participants</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>4 publications</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>$650K grant</span>
+        </div>
+      </a>
+
+      <!-- 3 -->
+      <a class="project-card" href="#" onclick="showPage('publications')">
+        <div class="card-head">
+          <div class="card-icon" style="background:#eaf3de; color:#3a6e20; font-size:20px;">🛡️</div>
+          <span class="tag tag-federal">Federal research</span>
+        </div>
+        <div>
+          <div class="card-title">Behavioral measures of team cohesion & resilience</div>
+          <div class="card-org">Army Research Institute · 2021–2024</div>
+        </div>
+        <p class="card-desc">Contributed to a high-fidelity teams research paradigm across 3 universities and 2 applied research firms. Recorded behavioral observations for 150+ participants across 30 outdoor experimental sessions, producing data for a team composition algorithm for the U.S. Army.</p>
+        <div class="card-footer">
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>150+ participants</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>5 institutions</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>90 hrs of sessions</span>
+        </div>
+      </a>
+
+      <!-- 4 -->
+      <a class="project-card" href="#" onclick="showPage('publications')">
+        <div class="card-head">
+          <div class="card-icon" style="background:#faeae5; color:#8a3a1a; font-size:20px;">🌍</div>
+          <span class="tag tag-qual">Qualitative</span>
+        </div>
+        <div>
+          <div class="card-title">Well-being of digital humanitarian aid workers</div>
+          <div class="card-org">M.S. Thesis · Florida Institute of Technology · 2024</div>
+        </div>
+        <p class="card-desc">Led an independent phenomenological investigation into how remote volunteer work shapes psychological well-being, resilience, and burnout. Used in-depth interviews and thematic analysis to surface common challenges and protective factors among digital humanitarians.</p>
+        <div class="card-footer">
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Published M.S. thesis</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Phenomenological method</span>
+        </div>
+      </a>
+
+      <!-- 5 -->
+      <a class="project-card" href="#" onclick="showPage('publications')">
+        <div class="card-head">
+          <div class="card-icon" style="background:#eeedfb; color:#4a3a9a; font-size:20px;">📊</div>
+          <span class="tag tag-applied">Applied research</span>
+        </div>
+        <div>
+          <div class="card-title">Girl Scout Voices Count national KPI survey</div>
+          <div class="card-org">Girl Scout Research Institute · 2022</div>
+        </div>
+        <p class="card-desc">Developed three 30-page research reports from 30,000+ survey responses tracking satisfaction, recommendation, and retention across Girl Scouts, parents, and volunteers. Coded 9,000 qualitative data points on troop leader pain points using QDA Miner.</p>
+        <div class="card-footer">
+          <span class="metric"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>30K+ survey responses</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/></svg>9K coded data points</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>3 stakeholder reports</span>
+        </div>
+      </a>
+
+      <!-- 6 -->
+      <a class="project-card" href="#" onclick="showPage('publications')">
+        <div class="card-head">
+          <div class="card-icon" style="background:#e6f0fb; color:#1a4f90; font-size:20px;">🌐</div>
+          <span class="tag tag-intl">International</span>
+        </div>
+        <div>
+          <div class="card-title">Cross-cultural student mental health & resilience</div>
+          <div class="card-org">Int'l Association of Applied Psychology · 2022–2023</div>
+        </div>
+        <p class="card-desc">Collaborated with a transcontinental team across the U.S., Spain, and Vietnam to investigate how emotional intelligence and social support shape student mental health across income levels. Managed the full U.S. data pipeline for 200 participants. Presented findings at IAAP's Advanced Research Training Seminar in London.</p>
+        <div class="card-footer">
+          <span class="metric"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>3 countries</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>200 participants</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Presented in London</span>
+        </div>
+      </a>
+
+      <!-- 7 -->
+      <a class="project-card" href="#" onclick="showPage('publications')">
+        <div class="card-head">
+          <div class="card-icon" style="background:#fbeaf2; color:#7a2a58; font-size:20px;">🏳️‍🌈</div>
+          <span class="tag tag-mixed">Mixed methods</span>
+        </div>
+        <div>
+          <div class="card-title">LGBTQ+ experiences in work teams</div>
+          <div class="card-org">Florida Institute of Technology · 2021–2022</div>
+        </div>
+        <p class="card-desc">Designed and conducted a mixed-methods study combining semi-structured interviews and social network analysis to explore how LGBTQ+ individuals navigate identity within work teams. Developed a theoretical framework published at SIOP 2023.</p>
+        <div class="card-footer">
+          <span class="metric"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>Social network analysis</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>SIOP 2023</span>
+          <span class="metric"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Mixed methods</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PUBLICATIONS ═══════════════════════════════ -->
+<div id="page-publications" class="page">
+  <div class="hero" style="padding-bottom: 2rem;">
+    <p class="hero-eyebrow">Scholarship</p>
+    <h1>Publications<br>& <em>Talks</em></h1>
+    <p class="hero-lead">Contributor to 8 conference presentations, 2 peer-reviewed journal articles, and 2 book chapters.</p>
+  </div>
+  <div class="section">
+    <p class="section-label">Journal articles & book chapters</p>
+    <div class="pub-list">
+      <div class="pub-item">
+        <div class="pub-type">Peer-reviewed article</div>
+        <div class="pub-title">Add your article title here</div>
+        <div class="pub-meta">Journal Name · Year · Authors</div>
+        <p class="pub-placeholder">→ Add the DOI link or PDF once available</p>
+      </div>
+      <div class="pub-item">
+        <div class="pub-type">Peer-reviewed article</div>
+        <div class="pub-title">Add your second article title here</div>
+        <div class="pub-meta">Journal Name · Year · Authors</div>
+        <p class="pub-placeholder">→ Add the DOI link or PDF once available</p>
+      </div>
+      <div class="pub-item">
+        <div class="pub-type">Book chapter</div>
+        <div class="pub-title">Add book chapter title here</div>
+        <div class="pub-meta">Book Title · Publisher · Year</div>
+        <p class="pub-placeholder">→ Add link once available</p>
+      </div>
+      <div class="pub-item">
+        <div class="pub-type">Book chapter</div>
+        <div class="pub-title">Add second book chapter title here</div>
+        <div class="pub-meta">Book Title · Publisher · Year</div>
+        <p class="pub-placeholder">→ Add link once available</p>
+      </div>
+    </div>
+
+    <p class="section-label" style="margin-top: 2.5rem;">Conference presentations</p>
+    <div class="pub-list">
+      <div class="pub-item">
+        <div class="pub-type">Conference · SIOP 2023</div>
+        <div class="pub-title">LGBTQ+ experiences at the team level: A theoretical framework</div>
+        <div class="pub-meta">Society for Industrial and Organizational Psychology · 2023</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-type">Conference · INGRoup (2nd author)</div>
+        <div class="pub-title">Trust dynamics in human-agent teams</div>
+        <div class="pub-meta">Interdisciplinary Network for Group Research · Year</div>
+        <p class="pub-placeholder">→ Add year and full title</p>
+      </div>
+      <div class="pub-item">
+        <div class="pub-type">Conference · AHFE (2nd author)</div>
+        <div class="pub-title">Unobtrusive behavioral measures of trust in HATs</div>
+        <div class="pub-meta">Applied Human Factors and Ergonomics · Year</div>
+        <p class="pub-placeholder">→ Add year and full title</p>
+      </div>
+      <div class="pub-item">
+        <div class="pub-type">Conference · HFES</div>
+        <div class="pub-title">Human Factors and Ergonomics Society presentation</div>
+        <div class="pub-meta">HFES Annual Meeting · Year</div>
+        <p class="pub-placeholder">→ Add year and full title</p>
+      </div>
+      <div class="pub-item">
+        <div class="pub-type">Conference · I/ITSEC</div>
+        <div class="pub-title">Interservice/Industry Training, Simulation & Education Conference</div>
+        <div class="pub-meta">I/ITSEC · Year</div>
+        <p class="pub-placeholder">→ Add year and full title</p>
+      </div>
+      <div class="pub-item">
+        <div class="pub-type">Invited talk · IAAP ARTS 2023</div>
+        <div class="pub-title">Cross-cultural differences in student mental health: U.S., Vietnam, and Pakistan</div>
+        <div class="pub-meta">IAAP Advanced Research Training Seminar · London, June 2023</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-type">Internal presentation · Brooks Running 2024</div>
+        <div class="pub-title">Measuring marathoner grit: Unobtrusively capturing psychological states via watch metrics</div>
+        <div class="pub-meta">Brooks Running Research Symposium & Footwear Department · 2024</div>
+      </div>
+    </div>
+
+    <p class="section-label" style="margin-top: 2.5rem;">Thesis</p>
+    <div class="pub-list">
+      <div class="pub-item">
+        <div class="pub-type">M.S. Thesis · Florida Institute of Technology · 2024</div>
+        <div class="pub-title">A qualitative, phenomenological exploration into the well-being and challenges of digital humanitarian aid workers</div>
+        <div class="pub-meta">Advisor: [Add advisor name] · May 2024</div>
+        <p class="pub-placeholder">→ Add ProQuest or institutional repository link</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ CV ═══════════════════════════════ -->
+<div id="page-cv" class="page">
+  <div class="hero" style="padding-bottom: 2rem;">
+    <p class="hero-eyebrow">Curriculum Vitae</p>
+    <h1>Experience &<br><em>Education</em></h1>
+  </div>
+  <div class="section">
+    <button class="download-btn" onclick="alert('Upload your PDF resume to GitHub alongside index.html, then replace this button with: &lt;a class=download-btn href=Addis_Resume.pdf&gt;Download PDF CV&lt;/a&gt;')">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF CV
+    </button>
+
+    <div class="cv-section">
+      <h3>Research & work experience</h3>
+      <div class="cv-item">
+        <div class="cv-item-head"><span class="cv-role">Front Desk Associate</span><span class="cv-date">Nov 2024 – Present</span></div>
+        <div class="cv-place">Brooks Running · Seattle, WA</div>
+        <ul class="cv-bullets">
+          <li>Analyzed 2 internal survey datasets; translated qualitative findings into recommendations incorporated into the 2026 Employee Mentoring Program</li>
+          <li>Supported Consumer Insights and Product Research teams with ongoing recruitment and file organization</li>
+        </ul>
+      </div>
+      <div class="cv-item">
+        <div class="cv-item-head"><span class="cv-role">Product Research & Development Intern</span><span class="cv-date">May – Nov 2024</span></div>
+        <div class="cv-place">Brooks Running · Seattle, WA</div>
+        <ul class="cv-bullets">
+          <li>Designed and executed original research using 131K runner workouts and 1,200 survey responses via Python, SQL, and DashLX to measure marathoner grit</li>
+          <li>Led full end-to-end wear test cycle for a Tier 2 trail shoe; presented at company-wide Research Symposium</li>
+        </ul>
+      </div>
+      <div class="cv-item">
+        <div class="cv-item-head"><span class="cv-role">Graduate Research Project Lead</span><span class="cv-date">Aug 2021 – May 2024</span></div>
+        <div class="cv-place">Air Force Office of Scientific Research via Florida Institute of Technology</div>
+        <ul class="cv-bullets">
+          <li>Co-led a $650K, 3-year federally funded longitudinal study on trust in human-AI teams</li>
+          <li>Developed and validated 10 behavioral trust measures using multimodal physiological data (heart rate, GSR) and behavioral observation</li>
+          <li>Merged and analyzed survey data across 7 timepoints, 9 conditions, 400+ participants in R</li>
+        </ul>
+      </div>
+      <div class="cv-item">
+        <div class="cv-item-head"><span class="cv-role">Graduate Research Associate</span><span class="cv-date">Aug 2021 – May 2024</span></div>
+        <div class="cv-place">Army Research Institute · Florida Institute of Technology</div>
+        <ul class="cv-bullets">
+          <li>Recorded behavioral observations for 150+ participants across 30 outdoor experimental sessions</li>
+          <li>Contributed to development of unobtrusive measures of team cohesion and resilience</li>
+        </ul>
+      </div>
+      <div class="cv-item">
+        <div class="cv-item-head"><span class="cv-role">Research Fellow & Intern</span><span class="cv-date">Jul – Sep 2022</span></div>
+        <div class="cv-place">Girl Scout Research Institute · GSUSA</div>
+        <ul class="cv-bullets">
+          <li>Developed three 30-page reports from 30,000+ survey responses for the Girl Scout Voices Count KPI survey</li>
+          <li>Coded 9,000 qualitative data points on troop leader pain points using QDA Miner</li>
+        </ul>
+      </div>
+      <div class="cv-item">
+        <div class="cv-item-head"><span class="cv-role">Research Associate</span><span class="cv-date">Sep 2022 – Aug 2023</span></div>
+        <div class="cv-place">International Association of Applied Psychology</div>
+        <ul class="cv-bullets">
+          <li>Managed complete U.S. data collection pipeline for 200 participants; presented findings in London</li>
+          <li>Collaborated with a transcontinental team across the U.S., Spain, and Vietnam</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-section">
+      <h3>Education</h3>
+      <div class="cv-item">
+        <div class="cv-item-head"><span class="cv-role">M.S. Industrial/Organizational Psychology</span><span class="cv-date">2021 – 2024</span></div>
+        <div class="cv-place">Florida Institute of Technology</div>
+        <ul class="cv-bullets"><li>Thesis: A qualitative, phenomenological exploration into the well-being and challenges of digital humanitarian aid workers</li></ul>
+      </div>
+      <div class="cv-item">
+        <div class="cv-item-head"><span class="cv-role">B.Sc. Psychology</span><span class="cv-date">2016 – 2020</span></div>
+        <div class="cv-place">University of Washington · Dean's List</div>
+      </div>
+    </div>
+
+    <div class="cv-section">
+      <h3>Skills & tools</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:0.25rem;">
+        <span class="skill-chip">R</span><span class="skill-chip">Python</span><span class="skill-chip">SQL</span><span class="skill-chip">SPSS</span><span class="skill-chip">Tableau</span><span class="skill-chip">DashLX</span><span class="skill-chip">QDA Miner</span><span class="skill-chip">Qualtrics</span><span class="skill-chip">Mixed-methods design</span><span class="skill-chip">IRB coordination</span><span class="skill-chip">Behavioral observation</span><span class="skill-chip">Multimodal data</span><span class="skill-chip">Slope modeling</span><span class="skill-chip">Stakeholder reporting</span><span class="skill-chip">Social network analysis</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
+<div id="page-about" class="page">
+  <div class="hero" style="padding-bottom: 2rem;">
+    <p class="hero-eyebrow">About</p>
+    <h1>Researcher,<br><em>trail runner.</em></h1>
+  </div>
+  <div class="section">
+    <div class="about-bio">
+      <p>I'm an organizational psychologist and applied researcher with 6+ years of experience studying how humans work — together, alongside machines, and through hardship. My research sits at the intersection of team dynamics, technology, and well-being, approached through a Humanitarian Work Psychology lens.</p>
+      <p>I earned my M.S. in I/O Psychology from Florida Institute of Technology (2024), where I studied trust in human-AI teams for the Air Force, team cohesion for the Army, and led qualitative research on the well-being of digital humanitarian volunteers. My B.Sc. in Psychology is from the University of Washington, where I also worked in research labs studying leadership, resilience, creativity, and social anxiety.</p>
+      <p>Between degrees, I hiked ~600 miles solo on the Pacific Crest Trail — navigating injuries, wildfires, and weather. It deepened everything I believe about resilience, grit, and what people are capable of. You'll find those themes throughout my research.</p>
+      <p>Outside of work I'm running, rock climbing, guiding backpacking trips at Two Sentinels Girl Scout Camp, or playing saxophone with the UW Husky Alumni Marching Band.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Research interests</h3>
+        <div class="skills-list">
+          <span class="skill-chip">Team dynamics</span>
+          <span class="skill-chip">Human-AI teaming</span>
+          <span class="skill-chip">Well-being at work</span>
+          <span class="skill-chip">Humanitarian work psychology</span>
+          <span class="skill-chip">Trust & psychological safety</span>
+          <span class="skill-chip">Wearable tech & behavior</span>
+          <span class="skill-chip">DEI in organizations</span>
+        </div>
+      </div>
+      <div class="about-card">
+        <h3>Methods & tools</h3>
+        <div class="skills-list">
+          <span class="skill-chip">Mixed-methods design</span>
+          <span class="skill-chip">Survey development</span>
+          <span class="skill-chip">Qualitative coding</span>
+          <span class="skill-chip">Behavioral observation</span>
+          <span class="skill-chip">Physiological data (ECG, GSR)</span>
+          <span class="skill-chip">R · Python · SQL · SPSS</span>
+          <span class="skill-chip">Social network analysis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="hero" style="padding-bottom: 2rem;">
+    <p class="hero-eyebrow">Get in touch</p>
+    <h1>Let's<br><em>connect.</em></h1>
+  </div>
+  <div class="section">
+    <div class="contact-wrap">
+      <div class="open-to">
+        <strong>Open to opportunities</strong> in UX research, people analytics, applied I/O research, and product research roles. Based in Seattle, WA.
+      </div>
+      <a class="contact-item" href="mailto:ariannaaddis3@gmail.com">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div><span class="contact-label">Email</span><span class="contact-val">ariannaaddis3@gmail.com</span></div>
+      </a>
+      <a class="contact-item" href="https://linkedin.com/in/arianna-addis" target="_blank">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <div><span class="contact-label">LinkedIn</span><span class="contact-val">linkedin.com/in/arianna-addis</span></div>
+      </a>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><span class="contact-label">Location</span><span class="contact-val">Seattle, WA</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
+  return false;
+}
+</script>
+
+</body>
+</html>
